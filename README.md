@@ -5,7 +5,7 @@ This repository contains the source code of my personal website.
 The live version of the site is hosted on Neocities.
 
 Live site:
-https://YOURNAME.neocities.org
+https://rp0039.neocities.org
 
 ## About
 
