@@ -146,13 +146,3 @@ h1 {
     align-items: center;
     flex-wrap:wrap;
 }
-
-.home-container .img {
-    padding: 7px;
-    border:1px solid;
-    height:auto;
-    width:100%;
-    max-width:30em;
-    display:block;
-    margin:0 auto;
-}
