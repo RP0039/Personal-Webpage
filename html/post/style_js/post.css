@@ -44,4 +44,7 @@
             justify-content: center;
             gap:1.5em;
          }
-         
+@media (max-width:469px) {
+   .title {line-height: 30px;}
+   .date-box {line-height: 22px;}
+}
