@@ -1,17 +1,50 @@
 ---
+import Layout from '../layout/layout.astro'
+
+import Hero from '@components/index/hero.astro'
+import Main from '@components/index/main.astro'
+import Topic from '@components/index/topic.astro'
+import Stamps from '@components/index/stamps.astro'
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="welcome">
+	<Hero />
+	<Main>
+			<Topic 
+			title="INTRODUCTORY TEXT"
+			description="Im a young man"
+			/>
+			<Topic 
+			title="SITE BUTTON"
+			description="comming soon..."
+			/>
+			<Stamps 
+			url={[
+				"https://adriansblinkiecollection.neocities.org/stamps/d18.gif",
+				"https://media1.tenor.com/m/DOrW_R3TANcAAAAC/gn-my-pookie-wookie-good-night-my-pookie-wookie.gif",
+				"https://media.tenor.com/NG4r1TLxjRkAAAAi/murder-drones-n-plushie.gif",
+				"https://media1.tenor.com/m/pM0ki7A-LhcAAAAC/n-sd-n.gif",
+			]}			
+			/>
+			<Topic 
+			title="View my Guestbook"
+			description="Leave me a message"
+			>
+			<a href="https://rp0039.atabook.org">
+			<i class="fa-solid fa-book-open"></i>
+			</a>
+			</Topic>
+	</Main>
+	<footer class="my-5 flex justify-center">
+		<a class="font-bold font-3xl button border-4 rounded-2xl px-3.5 py-2.5 hover:scale-105" href="/extras">
+		Extra Content!
+		</a>		
+	</footer>
+</Layout>
+
+<style>
+	.button {
+		transition: 0.3s ease;
+	}
+</style>
