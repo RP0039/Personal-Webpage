@@ -1,0 +1,62 @@
+---
+import Layout from '@layout/layout.astro'
+
+import '/src/styles/Blog.css'
+import '/src/styles/togglemode.css'
+
+interface Props {
+    previous: string
+    number: string
+    title: string
+}
+const { previous, number, title } = Astro.props
+---
+
+<Layout title=`RP0039 |Blog-Post ${number}`>
+
+      <div class="mt-[1em]">
+         <div class="post-container">
+                <h2 class="title" style="text-wrap:wrap;">{title}</h2>
+            <div id="mini-scroll">
+                <p style="white-space: pre-line;">
+                 <slot />
+                </p>
+            </div>
+         </div>
+      <div class="buttons" style="padding:15px;">
+         <a href={previous}>
+           <i class="fa-solid fa-arrow-left"></i>  PREVIUS 
+         </a>
+         <a href="../blog.html">
+           <i class="fa-solid fa-home"></i>  HOME 
+         </a>
+      </div>
+
+    </div>
+</Layout>
+
+<style>
+  .post-container {
+    box-sizing: none;
+    min-width: 250px;
+    max-width: 600px;
+    padding: 16px 12px;
+    border:2px solid;
+    box-shadow:5px 5px 0;
+  }
+  .buttons a {
+    color:inherit;
+    border:2px solid;
+    padding:8px;
+    margin-top:20px;
+  }
+  .buttons a:hover {
+    color: palevioletred;
+    transition: color .5s ease;
+  }
+  .buttons {
+    display:flex;
+    justify-content: center;
+    gap:1.5em;
+  }
+</style>
