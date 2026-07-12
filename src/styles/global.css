@@ -1,1 +1,76 @@
 @import "tailwindcss";
+
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    padding: max(3rem, 1.5rem) min(5%, 10%, 30%) 0;
+}
+/* Header Componente reutilizable */
+header {
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    border-bottom: 1px double var(--border-color);
+    background-color: var(--header-color);
+}
+header h1 { font-size: max(2rem, 3vw);}
+header { font-size: max(1rem, 1.5vw);}
+header ul {
+    display: flex;
+    gap: max(1rem, 4vw);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* CSS de Botones importantes */
+#button {
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--button-color);
+    box-shadow: var(--box-shadow); 
+}
+
+/* Variables */
+:root {
+    --background-color: #e4e4e4e7;
+    --border-color: #000000;
+    --text-color: #000000;
+
+    --header-color: #dbdddf;
+    --button-color: #dfdfdf;
+    --box-shadow: #000000 0px 1.5px 2px;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #000000;
+        --border-color: #ffffff;
+        --text-color: #ffffff;
+
+        --header-color: #2c2c2c;
+        --button-color: #363636;
+        --box-shadow: #ffffff 0px 1.5px 2px;
+    }
+}
+/* Media Query */
+@media screen and (min-width: 1000px) {
+    body {
+        padding: max(3rem, 1.5rem) 0 0;
+        max-width: 1500px;
+        margin: 0 20%;
+    }
+}
+@media screen and (min-width: 768px) {
+    header {
+        flex-direction: row;
+    }
+}

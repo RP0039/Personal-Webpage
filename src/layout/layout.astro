@@ -2,10 +2,7 @@
 interface Props { title: String; }
 const { title } = Astro.props
 
-import Header from "@components/header.astro"
-
-import '../styles/global.css'
-import '/src/styles/style.css'
+import '@styles/global.css'
 ---
 
 <!DOCTYPE html>
@@ -17,22 +14,17 @@ import '/src/styles/style.css'
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>{title}</title>
 </head>
-<body class="flex flex-col items-center py-12">
-    <div class="fondo">
-		<Header 
-		url={["/src/pages/blog.html"]}
-		title={["Blog"]}
-		/>
+<body class="py-12 gap-4">
+		<header>
+			<a href="/"><h1 class="font-bold">RP0039</h1></a>
+			<ul>
+				<li><a href="/homepage">Homepage</a></li>
+				<li><a href="/blog">Blog</a></li>
+				<li><a href="/log">Log</a></li>
+			</ul>
+		</header>
         <slot />
-    </div>
 
 	<script src="/src/script/togglemode.js"></script>
 </body>
 </html>
-
-<style>
-	body {
-        color: black;
-		font-family: system-ui;
-	}
-</style>
