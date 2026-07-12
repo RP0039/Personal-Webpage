@@ -1,0 +1,23 @@
+---
+import BlogPostLayout from '@layout/post/post_layout.astro';
+
+import { Image } from 'astro:assets';
+import { getEntry } from 'astro:content';
+
+const { slug } = Astro.params;
+const entry = await getEntry('paginas', slug);
+const { Content } = await entry.render();
+
+// Aquí puedes importar usando tu alias tranquilamente
+// Astro lo resolverá correctamente antes de renderizar
+const portada = await import(`../../..${entry.data.imagenPortada.substring(1)}`);
+// NOTA: Si prefieres no usar el hack del substring, 
+// simplemente importa la imagen por su ruta real dentro del frontmatter
+---
+<!-- 
+    <BlogPostLayout>
+        <Image src={entry.data.imagenPortada} alt="Portada" />
+        
+        <Content />
+    </BlogPostLayout>
+-->
