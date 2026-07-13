@@ -1,0 +1,35 @@
+---
+import BlogPostLayout from '@layout/post/post_layout.astro';
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+type BlogPost = CollectionEntry<'blog'>;
+
+const imageModules = import.meta.glob<{ default: { src: string } }>(
+    '/src/assets/img/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true }
+);
+
+export async function getStaticPaths() {
+    const blog = await getCollection('blog');
+
+    return blog.map((post: BlogPost) => ({
+        params: { slug: post.id },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { data } = post;
+const { title, previous, img } = data;
+const { Content } = await render(post);
+const normalizedImgPath = img.startsWith('/') ? img : `/${img}`;
+const imageSrc = imageModules[normalizedImgPath]?.default?.src;
+---
+<BlogPostLayout
+    title={title}
+    previous={previous}
+>
+    <Content />
+    {imageSrc && <img src={imageSrc} alt={title} />}
+</BlogPostLayout>

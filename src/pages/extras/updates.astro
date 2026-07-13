@@ -1,0 +1,25 @@
+---
+import Layout from '@layout/layout.astro';
+import { getCollection, render } from 'astro:content';
+
+const updates = await getCollection('updates');
+console.log("Colección detectada:", updates);
+
+const entry = updates[0];
+
+if (!entry) {
+    return Astro.redirect("/404");
+}
+
+const { Content } = await render(entry);
+const { title } = entry.data;
+---
+<Layout title={title} >
+
+    <h1> {title} </h1>
+    <article>
+        <Content />
+    </article>
+</Layout>
+
+

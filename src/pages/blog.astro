@@ -1,7 +1,33 @@
 ---
-import Layout from "@layout/layout.astro"
+import Layout from "@layout/layout.astro";
+import '@styles/blog.css';
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+type BlogPost = CollectionEntry<'blog'>;
+
+const blogData = await getCollection('blog');
 ---
 
 <Layout title="RP0039 - My personal blog">
-    hola
+    <section aria-label="Links to all of my entries.">
+        <div class="blog-title">
+            <h1>Welcome to my Blog</h1>
+            <h4>lets see...</h4>
+        </div>
+        {
+            blogData.map((post: BlogPost) => {
+                const { date, description, title } = post.data;
+
+                return (
+                    <article>
+                        <a href={`/blog/${post.id}`}>
+                            <h2>{title}</h2><h4>{date}</h4>
+                        </a>
+                        <p>{description}</p>
+                    </article>
+                );
+            })
+        }
+    </section>
 </Layout>
