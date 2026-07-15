@@ -1,6 +1,6 @@
-> # [!Contributing]
+> # Contributing
 > Thank you for taking interest in this project.
-
+>
 > This repository contains the source code of a personal website. Contributions are welcome, but please keep the following guidelines in mind.
 
 ## Ways to contribute
