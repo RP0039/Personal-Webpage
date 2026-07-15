@@ -16,32 +16,32 @@ The repository is public so people can explore the code, suggest improvements, o
 
 ## Project structure
 
-src/
- |-/styles → stylesheets
- |   |- global-css → Components, Media querys and Variables
- |   |- blog.css
- |   |- updates.css
- |
- |-/script → JavaScript
- |-/assets
- |   |- /font → fonts 
- |   |- /svg → svgs 
- |   |- /img → images
- |
- |-/layout
- |   |- layout.astro → general layout
- |   |- /post → Blog and blog post layouts 
- |-/pages
- |   |- /blog/[slug].astro → dinamic paths
- |   |- blog.astro
- |   |- home.astro
- |   |- extras.astro
- |   |- /extras → extras pages
- |   |- index.astro → initial page 
- |
- |-/content → Content of blog, updates and log _**(MARKDOWN only)**_ 
- |
- |-/components
+src/ <br>
+ |-/styles → stylesheets <br>
+ |   |- global-css → Components, Media querys and Variables <br>
+ |   |- blog.css <br>
+ |   |- updates.css <br>
+ | <br>
+ |-/script → JavaScript <br>
+ |-/assets <br>
+ |   |- /font → fonts <br>
+ |   |- /svg → svgs <br>
+ |   |- /img → images <br>
+ | <br>
+ |-/layout <br>
+ |   |- layout.astro → general layout <br>
+ |   |- /post → Blog and blog post layouts <br> 
+ |-/pages <br>
+ |   |- /blog/[slug].astro → dinamic paths <br>
+ |   |- blog.astro <br>
+ |   |- home.astro <br>
+ |   |- extras.astro <br>
+ |   |- /extras → extras pages <br>
+ |   |- index.astro → initial page <br>
+ | <br>
+ |-/content → Content of blog, updates and log _**(MARKDOWN only)**_ <br>
+ | <br>
+ |-/components <br>
 
 
 ## Contributing
