@@ -1,60 +1,39 @@
 ---
 import Layout from '@layout/layout.astro'
+import Reply from "@assets/svg/reply.svg";
+import ReplyAll from "@assets/svg/reply-all.svg";
 import '@styles/blog.css'
 
 interface Props {
     previous: string
     title: string
+    date: string
 }
-const { previous, title } = Astro.props
+const { previous, title, date } = Astro.props
 ---
 
 <Layout title={`RP0039 |Blog - ${title}`}>
 
-      <main class="mt-[1em]">
+      <main class="mt-4 px-[3%] grid justify-center">
          <article class="post-container">
-                <h2 class="title" style="text-wrap:wrap;">{title}</h2>
-            <div id="mini-scroll">
-                <div class="prose">
-                    <slot />
-                </div>
+            <div style="line-height: 15px;">
+              <h2 class="text-3xl max-lg:text-2xl max-sm:text-xl font-semibold px-6">{title}</h2>
+              <p class="px-3 mb-4 font-medium max-md:text-[13px]">{date}</p>
+            </div>
+
+            <div class="px-3 mb-3 text-pretty text-lg max-lg:text-[15px] max-sm:text-[12px]">
+                <slot />
             </div>
          </article>
       </main>
 
-      <footer class="buttons" style="padding:15px;">
-        <a href={`/${previous}`}>
-          <i class="fa-solid fa-arrow-left"></i>  PREVIUS 
+      <footer id="Post" class="buttons p-4">
+        <a href={`/${previous}`} class="hover:scale-105">
+          <Reply class="size-8" />  PREVIUS 
         </a>
-        <a href="/blog">
-          <i class="fa-solid fa-home"></i>  HOME 
+        <a href="/blog" class="hover:scale-105">
+          <ReplyAll class="size-8" />  HOME 
         </a>
       </footer>
 
 </Layout>
-
-<style>
-  .post-container {
-    box-sizing: none;
-    min-width: 250px;
-    max-width: 600px;
-    padding: 16px 12px;
-    border:2px solid;
-    box-shadow:5px 5px 0;
-  }
-  .buttons a {
-    color:inherit;
-    border:2px solid;
-    padding:8px;
-    margin-top:20px;
-  }
-  .buttons a:hover {
-    color: palevioletred;
-    transition: color .5s ease;
-  }
-  .buttons {
-    display:flex;
-    justify-content: center;
-    gap:1.5em;
-  }
-</style>

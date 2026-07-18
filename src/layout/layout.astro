@@ -2,6 +2,9 @@
 interface Props { title: String; }
 const { title } = Astro.props
 
+import HomeIcon from "@assets/svg/hamburger.svg";
+import BlogIcon from "@assets/svg/newspaper.svg";
+import LogIcon from "@assets/svg/paperclip.svg";
 import '@styles/global.css'
 ---
 
@@ -11,16 +14,18 @@ import '@styles/global.css'
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="https://files.catbox.moe/6zt15e.png">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>{title}</title>
+    <title>{`RP0039 - ${title}`}</title>
 </head>
-<body class="py-12 gap-4">
-		<header>
-			<a href="/"><h1 class="font-bold">RP0039</h1></a>
+<body class="gap-4">
+		<header id="#top">
+			<a href="/" class="hover:rotate-2 hover:translate-x-1.5 hover:scale-102">
+				<h1 style="line-height: 1em;" class="font-bold">Hello World</h1>
+				<p class="ml-3">RP0039</p>
+			</a>
 			<ul>
-				<li><a href="/homepage">Homepage</a></li>
-				<li><a href="/blog">Blog</a></li>
-				<li><a href="/log">Log</a></li>
+				<li><a href="/home/" class="hover:scale-105"><HomeIcon class="size-6 font-medium" />Home</a></li>
+				<li><a href="/blog/" class="hover:scale-105"><BlogIcon class="size-6 font-medium" />Blog</a></li>
+				<li><a href="/log/" class="hover:scale-105"><LogIcon class="size-6 font-medium" />Log</a></li>
 			</ul>
 		</header>
         <slot />

@@ -1,16 +1,21 @@
 ---
+import ToTop from "@components/toTop.astro";
 import Layout from "@layout/layout.astro"
 import '@styles/blog.css'
+
+interface Props { title: String; }
+const { title } = Astro.props
 ---
 
-<Layout title="My personal blog">
+<Layout title={title}>
 
-    <main class="home-container"> 
-        <div class="m-[0 auto] mb-4">
-                <h1>What’s Next?</h1>
+    <main class="blog-container"> 
+        <div class="m-[0 auto] mb-4 text-center">
+                <h1 id="Blog-title" style="line-height:2.5rem;" class="font-bold">What’s Next?</h1>
                 <p>Turn the page and find out.</p>
         </div>
 
         <slot />
     </main>
+    <ToTop />
 </Layout>
