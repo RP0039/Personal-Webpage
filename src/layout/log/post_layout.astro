@@ -1,0 +1,71 @@
+---
+import Layout from '@layout/layout.astro'
+import ReplyAll from "@assets/svg/reply-all.svg";
+import '@styles/log.css'
+
+interface Props {
+  img: string
+  rating: number
+  title: string
+  author: string
+  genre: string
+  book: string
+  description: string
+}
+const { book, description, rating, title, author, genre, img } = Astro.props
+
+const imageModules = import.meta.glob<{ default: { src: string } }>(
+    '/src/assets/img/log/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true }
+);
+const normalizedImgPath = img.startsWith('/') ? img : `/${img}`;
+const imageSrc = imageModules[normalizedImgPath]?.default?.src;
+---
+
+<Layout title={`RP0039 | ${title}`}>
+
+  <section class="post-container mt-4 px-[3%] mx-auto">
+    <aside>
+      {imageSrc && <img class="Portrait" src={imageSrc} alt={title} />}
+      <p class="mt-4 text-center"><span class="underline font-bold">Rating</span>: {rating} / 5</p>
+    </aside>
+    
+    <article>
+      <h2 class="text-4xl max-lg:text-3xl max-sm:text-2xl max-sm:text-center font-bold">{title}</h2>
+
+      <div class="Data">
+        <p class="mt-2 mb-0.5"><span class="underline font-semibold">Author</span>: {author}</p>
+        <p class="mb-0.5"><span class="underline font-semibold">Type</span>: {book}</p>
+        <div class="tags mb-3">
+          {genre}
+        </div>
+      </div>
+
+      <p class="px-2 text-[16px] max-md:text-[12px] max-sm:text-justify text-pretty">{description}</p>
+    </article>
+    
+    <main class="border-t px-3 py-3 text-pretty text-lg max-lg:text-[15px] max-sm:text-[12px]">
+      <slot />
+    </main>
+  </section>
+
+  <footer id="Post" class="buttons p-4">
+    <a href="/log" class="hover:scale-105">
+      <ReplyAll class="size-8" />  HOME 
+    </a>
+  </footer>
+
+</Layout>
+
+<style>
+  aside {
+    grid-area: "aside";
+  }
+  main {
+    grid-area: "main";
+    grid-column: 1 / -1;
+  }
+  article {
+    grid-area : "article";
+  }
+</style>

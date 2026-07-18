@@ -1,0 +1,22 @@
+---
+import ToTop from "@components/toTop.astro";
+import Layout from "@layout/layout.astro"
+import '@styles/log.css'
+
+interface Props { title: String; }
+const { title } = Astro.props
+---
+
+<Layout title={title}>
+
+    <main class="log-container"> 
+        <div class="px-[2%] mb-4">
+                <h1 id="Blog-title" style="line-height:3.5rem;" class="font-bold">Reading Log</h1>
+                <p>A place to keep registered my contact with books. : p</p>
+        </div>
+
+        <slot />
+    </main>
+
+    <ToTop />
+</Layout>

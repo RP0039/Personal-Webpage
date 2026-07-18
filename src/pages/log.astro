@@ -1,0 +1,66 @@
+---
+import LogLayout from "@layout/log/log_layout.astro";
+import '@styles/log.css';
+
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+type logPost = CollectionEntry<'log'>;
+
+const imageModules = import.meta.glob<{ default: { src: string } }>(
+    '/src/assets/img/log/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true }
+);
+
+const logData = await getCollection('log');
+---
+
+<LogLayout title="Reading Log">
+    <section aria-label="Links to all of my entries." class="log-Card-container">
+        {
+            logData.map((post: logPost) => {
+                const { author, rating, description, title, img, book, genre } = post.data;
+
+                const normalizedImgPath = img.startsWith('/') ? img : `/${img}`;
+                const imageSrc = imageModules[normalizedImgPath]?.default?.src;
+
+                return (
+                    <article class="log-card grid">
+                        <a href={`/log/${post.id}`}>
+                            {imageSrc && <img class="Portrait" src={imageSrc} alt={title} />}
+                            <p class="pt-3 text-center font-bold"><span class="underline">Rating</span>: {rating} / 5</p>
+                        </a>
+                        <div class="self-start">
+                            <a href={`/log/${post.id}`}>
+                                <h1 class="text-5xl max-md:text-3xl font-bold">{title}</h1>
+                                <div class="Data">
+                                    <p class="mt-2 mb-0.5"><span class="underline font-semibold">Author</span>: {author}</p>
+                                    <p class="mb-0.5"><span class="underline font-semibold">Type</span>: {book}</p>
+                                    <div class="tags mb-3">
+                                    {genre}
+                                    </div>
+                                </div>
+                                <p class="px-2 text-[16px] max-md:text-[12px] max-sm:text-justify text-pretty">{description}</p>
+                            </a>
+                        </div>
+                    </article>
+                );
+            })
+        }
+    </section>
+</LogLayout>
+
+<style>
+    article {
+        grid-template-columns: auto 1fr;
+        gap: 1.5rem;
+        align-items: center;
+        justify-items: center;
+    }
+    @media screen and (max-width: 568px) {
+        article {
+            grid-template-columns: 1fr;
+            gap:1rem;
+        }
+    }
+</style>

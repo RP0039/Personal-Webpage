@@ -1,0 +1,34 @@
+---
+import LogPostLayout from '@layout/log/post_layout.astro';
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+type logPost = CollectionEntry<'log'>;
+
+export async function getStaticPaths() {
+    const log = await getCollection('log');
+
+    return log.map((post: logPost) => ({
+        params: { slug: post.id },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { data } = post;
+const { book, description, title, img, rating, author, genre } = data;
+const { Content } = await render(post);
+---
+<LogPostLayout
+    title={title}
+    rating={rating}
+    author={author}
+    genre={genre}
+    img={img}
+    description={description}
+    book={book}
+>
+
+    <Content />
+
+</LogPostLayout>
