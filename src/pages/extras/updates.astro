@@ -1,9 +1,11 @@
 ---
 import Layout from '@layout/layout.astro';
+import Totop from '@components/toTop.astro';
+import '@styles/updates.css';
+
 import { getCollection, render } from 'astro:content';
 
 const updates = await getCollection('updates');
-// console.log("Colección detectada:", updates);
 
 const entry = updates[0];
 
@@ -15,11 +17,13 @@ const { Content } = await render(entry);
 const { title } = entry.data;
 ---
 <Layout title={title} >
-
-    <h1> {title} </h1>
     <article>
+        <h1 class="text-4xl text-center font-semibold mt-6"> {title} </h1>
+        <p class="text-center text-lg max-md:text-[15px] mb-6">Check out in my <a class="underline decoration-blue-500 font-bold" href="https://github.com/RP0039/Personal-Webpage/activity">Github profile.</a></p>
+        
         <Content />
     </article>
+    <Totop />
 </Layout>
 
 

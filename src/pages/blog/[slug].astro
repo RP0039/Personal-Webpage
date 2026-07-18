@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { data } = post;
-const { title, previous, img } = data;
+const { title, previous, img, date} = data;
 const { Content } = await render(post);
 const normalizedImgPath = img.startsWith('/') ? img : `/${img}`;
 const imageSrc = imageModules[normalizedImgPath]?.default?.src;
@@ -29,7 +29,8 @@ const imageSrc = imageModules[normalizedImgPath]?.default?.src;
 <BlogPostLayout
     title={title}
     previous={previous}
+    date={date}
 >
     <Content />
-    {imageSrc && <img src={imageSrc} alt={title} />}
+    {imageSrc && <img class="max-w-130 w-full mt-6 mx-auto" src={imageSrc} alt={title} />}
 </BlogPostLayout>

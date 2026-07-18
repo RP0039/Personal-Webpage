@@ -6,22 +6,27 @@ import Main from '@components/index/main.astro'
 import Topic from '@components/index/topic.astro'
 import Stamps from '@components/index/stamps.astro'
 
+import ExtraIcon from "@assets/svg/extras.svg";
+import Itsme from "@assets/img/It's me.jpg";
+import { Image } from 'astro:assets'
 ---
 
-<Layout title="RP0039 - Personal Webpage">
+<Layout title="Personal Webpage">
 	<section
-	 class="grid grid-cols-1 justify-items-center gap-6"
+	 class="grid grid-cols-1 px-[5%] py-6 gap-6"
 	>
 		<Hero />
 		<Main>
-				<Topic 
+				<Topic
 				title="INTRODUCTORY TEXT"
-				description="Im a young man"
+				description=" Hi, I'm Val, and I'm 17 years old.
+				 I'm very interested in programming, with Astro being my favorite language, and I enjoy working with it alongside React. I also love music, especially electronic and metal, with Aphex Twin and Avenged Sevenfold as my main favorites.
+				 Finally, I hope you enjoy this site, which I created with love, and check out my GitHub."
 				/>
-				<Topic 
-				title="SITE BUTTON"
-				description="comming soon..."
-				/>
+				<div>
+					<Image id="itme" class="size-34" src={Itsme} alt="It's me" />
+					<h1 class="text-center text-2xl font-semibold">It's me</h1>
+				</div>
 				<Stamps 
 				url={[
 					"https://adriansblinkiecollection.neocities.org/stamps/d18.gif",
@@ -30,17 +35,31 @@ import Stamps from '@components/index/stamps.astro'
 					"https://media1.tenor.com/m/pM0ki7A-LhcAAAAC/n-sd-n.gif",
 				]}			
 				/>
+				<Topic 
+				title="SITE BUTTON"
+				description="comming soon..."
+				/>
 		</Main>
 	</section>
 	<footer id="Extra" class="my-5 flex justify-center">
-		<a class="font-bold font-3xl button border-4 rounded-2xl px-3.5 py-2.5 hover:scale-105" href="/extras">
-		Extra Content!
+		<a class="font-bold text-3xl button rounded px-3.5 py-2.5 hover:scale-110 flex items-center gap-4" href="/extras">
+			Extra Content! <ExtraIcon class="size-8"/>
 		</a>		
 	</footer>
 </Layout>
 
 <style>
-	.button {
-		transition: 0.3s ease;
+	section {
+		background-color: var(--b-bg);
+	}
+	div {
+		background: var(--gradient);
+		background-color: var(--b-bg);
+		border: var(--border-card);
+		box-shadow: var(--box-shadow);
+		padding: 2% 2% 0;
+	}
+	#itme {
+		border: 0.4px solid hsla(0,0,0,0.4);
 	}
 </style>

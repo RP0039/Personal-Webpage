@@ -1,16 +1,18 @@
 ---
-import Layout from "@layout/layout.astro"
-import Topic from "@components/index/topic.astro"
+import Layout from "@layout/layout.astro";
+import Topic from "@components/index/topic.astro";
+import Totop from "@components/toTop.astro";
 ---
 
-<Layout title="RP0039 - Extra Content">
-    <Topic 
-    title="View my Guestbook"
-    description="Leave me a message"
-    >
-        <a href="https://rp0039.atabook.org">
-        <i class="fa-solid fa-book-open"></i>
-        </a>
-    </Topic>
-    <a href="/extras/updates">holhaholla</a>
+<Layout title="Extra Content">
+    <a id="Guestbook" href="https://rp0039.atabook.org">
+        <Topic 
+        title="View my Guestbook"
+        description="Leave me a message"
+        >
+        </Topic>
+    </a>
+
+    <a href="/extras/updates">Updates</a>
+    <Totop />
 </Layout>

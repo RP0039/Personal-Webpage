@@ -6,24 +6,45 @@ import type { CollectionEntry } from "astro:content";
 
 type BlogPost = CollectionEntry<'blog'>;
 
+const imageModules = import.meta.glob<{ default: { src: string } }>(
+    '/src/assets/img/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true }
+);
+
 const blogData = await getCollection('blog');
 ---
 
-<BlogLayout title="RP0039 - My personal blog">
+<BlogLayout title="My personal blog">
     <section aria-label="Links to all of my entries." class="Blog-Card-container">
         {
             blogData.map((post: BlogPost) => {
-                const { date, description, title } = post.data;
+                const { date, description, title, img } = post.data;
+
+                const normalizedImgPath = img.startsWith('/') ? img : `/${img}`;
+                const imageSrc = imageModules[normalizedImgPath]?.default?.src;
 
                 return (
-                    <article>
+                    <article class="Blog-card grid">
                         <a href={`/blog/${post.id}`}>
-                            <h2>{title}</h2><h4>{date}</h4>
+                            {imageSrc && <img class="size-22 rounded border-[0.7px] border-b-blue-300" src={imageSrc} alt={title} />}
                         </a>
-                        <p>{description}</p>
+                        <div>
+                            <a href={`/blog/${post.id}`}>
+                                <h2 class="text-2xl font-bold">{title}</h2><h4 class="ml-2 text-lg font-medium">{date}</h4>
+                                <p class="text-[15px]">{description}</p>
+                            </a>
+                        </div>
                     </article>
                 );
             })
         }
     </section>
 </BlogLayout>
+
+<style>
+    article {
+        grid-template-columns: auto 1fr;
+        gap: 0.7em;
+        align-items: center;
+    }
+</style>
