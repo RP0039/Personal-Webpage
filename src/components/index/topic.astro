@@ -1,17 +1,17 @@
 ---
 const { title, description } = Astro.props
-
 ---
 
 <article>
-    <h1 class="text-2xl font-medium">{title}</h1>
-    <p>{description}</p>
+    <h1 class="text-center text-xl font-bold">{title}</h1>
+    <p class="pl-4 text-justify text-lg whitespace-pre-line">{description}</p>
     <slot />
 </article>
 
 <style>
-    h1 {
-        font-family: ArchivoBlack;
+    @media screen and (max-width: 768px) {
+        p {
+            font-size: 14px;
+        }
     }
 </style>
-

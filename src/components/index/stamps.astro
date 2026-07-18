@@ -4,12 +4,11 @@ interface Props {
 }
 
 const { url }: Props = Astro.props
-
 ---
 
-<section class="pr-4">
-    <h1 class="w-full font-medium text-2xl text-center">STAMPS</h1>
-    <article class="border-2 p-2 flex flex-wrap gap-1">
+<section class="mx-[7%] max-lg:mx-[3%]">
+    <h1 class="w-full font-extrabold text-3xl text-center">STAMPS</h1>
+    <article class="p-2 flex flex-wrap justify-center gap-2.5">
         {url && url.map((stamp) => (
         <img src={stamp} alt="A Really funny image" class="size-20" />
         ))}
@@ -17,10 +16,14 @@ const { url }: Props = Astro.props
 </section>
 
 <style>
-    h1 {
-        font-family: ArchivoBlack;
+    section {
+        background-color: var(--l-bg);
+        border: var(--border-card);
     }
     article {
-        box-shadow: 10px 10px blue;
+        box-shadow: var(--box-shadow);
+    }
+    section {
+        grid-column: 1 / -1;
     }
 </style>
