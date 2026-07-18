@@ -13,6 +13,18 @@ export const collections = {
             img: z.string(),
         }),
     }),
+    log: defineCollection({
+        loader: glob({ pattern: "**/*.md", base: "src/content/log" }),
+        schema: z.object({
+            title: z.string(),
+            author: z.string(),
+            genre: z.string(),
+            rating: z.coerce.number(),
+            description: z.string(),
+            img: z.string(),
+            book: z.string(),
+        }),
+    }),
     updates: defineCollection({
         loader: glob({ pattern: "**/*.md", base: "src/content/updata" }),
         schema: z.object({
