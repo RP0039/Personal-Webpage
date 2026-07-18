@@ -4,10 +4,13 @@
 body {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    background-color: var(--background-color);
+    background-color: var(--d-bg);
     font-family: Arial, sans-serif;
-    color: var(--text-color);
+    color: var(--text-muted);
     padding: max(3rem, 1.5rem) min(5%, 10%, 30%) 0;
+}
+h1, h2, h3, h4 {
+    color: var(--text);
 }
 /* Header Componente reutilizable */
 header {
@@ -16,49 +19,71 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    gap:0.5em;
 
-    border-bottom: 1px double var(--border-color);
-    background-color: var(--header-color);
+    border-bottom: 1.3px solid var(--border);
+    background-color: var(--l-bg);
 }
-header h1 { font-size: max(2rem, 3vw);}
+header h1, #Blog-title { font-size: max(2rem, 3vw);}
 header { font-size: max(1rem, 1.5vw);}
 header ul {
     display: flex;
-    gap: max(1rem, 4vw);
+    gap: max(1rem, 2.5vw);
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
+header li a {
+    display: flex;
+    align-items: center;
+    gap: .15rem;
+    transition: var(--transition);
+}
+header li a:hover {
+    color: var(--text);
+}
+header p {
+    text-align: center;
+}
+header a {
+    transition: var(--transition);
+}
 
 /* CSS de Botones importantes */
 #button {
     padding: 0.25rem;
     border-radius: 0.5rem;
-    border: 1px solid var(--border-color);
-    background-color: var(--button-color);
+    border: 1px solid var(--border);
+    background-color: var(--d-bg);
     box-shadow: var(--box-shadow); 
 }
 
 /* Variables */
 :root {
-    --background-color: #e4e4e4e7;
-    --border-color: #000000;
-    --text-color: #000000;
+    --text: hsl(0, 0%, 5%);
+    --text-muted: hsl(0, 0%, 30%);
+    --l-bg: hsl(0, 0%, 100%);
+    --b-bg: hsl(0, 0%, 95%);
+    --d-bg: hsl(0, 0%, 90%);
 
-    --header-color: #dbdddf;
-    --button-color: #dfdfdf;
-    --box-shadow: #000000 0px 1.5px 2px;
+    --highlight: hsl(0, 0%, 100%);
+    --gradient: linear-gradient(0deg, var(--b-bg) 95%, var(--l-bg));
+    --transition: .3s ease;
+    
+    --border: hsl(0, 0%, 30%);
+    --border-card: solid 1px var(--b-bg);
+    --box-shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
 }
-@media (prefers-color-scheme: dark) {
+/*@media (prefers-color-scheme: dark) {
     :root {
+        --color: #ffffff;
         --background-color: #000000;
         --border-color: #ffffff;
-        --text-color: #ffffff;
 
         --header-color: #2c2c2c;
         --button-color: #363636;
-        --box-shadow: #ffffff 0px 1.5px 2px;
+        --m-boxShadow: 3px 4px blue;    
+        --l-boxShadow: #ffffff 0px 1.5px 2px;
     }
 }
 /* Media Query */
@@ -73,4 +98,34 @@ header ul {
     header {
         flex-direction: row;
     }
+    header p {
+        text-align: left;
+    }
+}
+
+/* Footer to Top */
+#Top a {
+    border: var(--border-card);
+    background-color: hsl(0, 0%, 97%);
+    box-shadow: var(--box-shadow); 
+    transition: var(--transition);
+}
+#Top a:hover {
+    background-color: var(--l-bg);
+}
+/* Footer Post */
+#Post a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+    background-color: var(--l-bg);
+}
+/* Footer Index */
+#Extra a {
+    border: 2px solid var(--border);
+    background-color: var(--l-bg);
+    color: var(--text);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
 }

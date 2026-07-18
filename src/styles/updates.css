@@ -1,0 +1,18 @@
+article {
+    background: var(--gradient);
+    background-color: var(--b-bg);
+    border: var(--border-card);
+    border-top: var(--highlight);
+    box-shadow: var(--box-shadow);
+    padding: 0 7% 2rem;
+}
+article p { 
+    white-space: pre-line;
+    font-size: 1em; 
+}
+h2 {
+    font-size: 1.5em;
+}
+h3 {
+    font-size: 1.2em;
+}
