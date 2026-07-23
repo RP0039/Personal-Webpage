@@ -7,7 +7,7 @@ import type { CollectionEntry } from "astro:content";
 type BlogPost = CollectionEntry<'blog'>;
 
 const imageModules = import.meta.glob<{ default: { src: string } }>(
-    '/src/assets/img/*.{jpg,jpeg,png,webp,avif}',
+    '/src/assets/img/blog/*.{jpg,jpeg,png,webp,avif}',
     { eager: true }
 );
 
