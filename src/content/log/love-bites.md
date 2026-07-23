@@ -17,4 +17,5 @@ La historia es muy entretenida, atrapante, con buena dirección narrativa y sin 
  -- **Cedric** (hermano de Ki)
 Estos personajes pasan la mitad de la historia ausentes o sin mucha relevancia, pero la falta más grande que tiene la historia es **la poca relevancia del bando o facción de los lobos 🐺**. Realmente no hay casi paneles dedicados a yo creo la parte mas fundamental de la historia.
 
-_Tambien la historia tiene varios cliches, pero es una historia de webtoon📚️ que puedo pedir._
+_Tambien la historia tiene varios cliches, pero es una historia de webtoon📚️ que puedo pedir._ 
+ -- **Link del comic**: <span class="underline">https://www.webtoons.com/en/romance/love-bites/list?title_no=7679</span>
