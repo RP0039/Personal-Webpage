@@ -44,7 +44,8 @@ const imageSrc = imageModules[normalizedImgPath]?.default?.src;
       <p class="px-2 text-[16px] max-md:text-[12px] max-sm:text-justify text-pretty">{description}</p>
     </article>
     
-    <main class="border-t px-3 py-3 text-pretty text-lg max-lg:text-[15px] max-sm:text-[12px]">
+    <main class="border-t px-3 py-3 text-pretty text-lg max-lg:text-[15px] max-sm:text-[12px] whitespace-pre-line">
+      <h2 class="text-center font-semibold text-xl">REVIEW!</h2>
       <slot />
     </main>
   </section>

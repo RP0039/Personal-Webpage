@@ -8,4 +8,4 @@ img: src/assets/img/log/Junjo-Romantica.jpg
 book: Manga
 ---
 
-REVIEW !
+Tengo que enterarme bien para la review :P esperen.
