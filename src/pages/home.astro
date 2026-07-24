@@ -1,7 +1,68 @@
 ---
 import Layout from "@layout/layout.astro"
+import Totop from "@components/toTop.astro"
+import Topic from "@components/home/carrusel.astro";
+
+import VideoGames from "@assets/img/home/homepage.png";
+import Music from "@assets/img/home/music.png";
+import { Image } from 'astro:assets'
 ---
 
 <Layout title="Homepage">
-    <h1>Homepage</h1>   
+    <main class="mx-[2%] pt-4 px-2">
+        <h1>RECOMMENDATIONS</h1>
+        <section class="text-center py-3" aria-label="Video Games recommendations section">
+                <h2>VIDEO GAMES <span class="text-black">VIDEO GAMES</span> VIDEO GAMES</h2>
+                <article class="flex justify-center gap-3" aria-label="My favorite games">
+                    <Image class="topic" src={VideoGames} alt="A amazing game picture" />
+                    <Image class="max-w-47 w-full" src={VideoGames} alt="A amazing game picture" />
+                    <Image class="max-w-57 w-full" src={VideoGames} alt="A amazing game picture" />
+                    <Image class="max-w-47 w-full" src={VideoGames} alt="A amazing game picture" />
+                    <Image class="topic" src={VideoGames} alt="A amazing game picture" />
+                </article>
+                <article class="flex justify-center gap-3 mt-3" aria-label="Recommendations">
+                    <Topic>
+                        <Image class="topic" src={VideoGames} alt="A amazing game picture" />                        
+                    </Topic>
+                </article>
+        </section>        
+        <section class="text-center" aria-label="Music recommendations section">
+                <h2>MUSIC <span class="text-black">MUSIC</span> MUSIC</h2>
+        </section>
+    </main>
+
+    <Totop />  
+
 </Layout>
+
+<style>
+    main h1, h2 {
+        font-size: min(1.5rem, 6rem);
+        text-align: center;
+        font-weight: 700;
+        line-height: 4.5rem;
+    }
+    h2  {
+        border-top: 1.3px solid var(--border);
+        color: var(--text-muted);
+        font-size: min(0.7rem, 2.6rem);
+    }
+    main {
+        background-color: var(--b-bg);
+    }
+    .topic {
+        height: 6rem;
+        max-width: 4rem;
+        width: 100%;
+    }
+    @media screen and (min-width: 1000px) {
+        body {
+            margin: 0 10%;
+        }
+        .topic {
+            height: 16rem;
+            max-width: 10rem;
+            width: 100%;
+        }
+    }
+</style>

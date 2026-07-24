@@ -61,7 +61,7 @@ header a {
 /* Variables */
 :root {
     --text: hsl(0, 0%, 5%);
-    --text-muted: hsl(0, 0%, 30%);
+    --text-muted: #4d4d4d;
     --l-bg: hsl(0, 0%, 100%);
     --b-bg: hsl(0, 0%, 95%);
     --d-bg: hsl(0, 0%, 90%);
