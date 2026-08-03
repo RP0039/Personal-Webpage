@@ -9,6 +9,8 @@ import Stamps from '@components/index/stamps.astro'
 import ExtraIcon from "@assets/svg/extras.svg";
 import Itsme from "@assets/img/It's me.jpg";
 import { Image } from 'astro:assets'
+
+import Music from '@components/Music.astro';
 ---
 
 <Layout title="Personal Webpage">
@@ -17,31 +19,36 @@ import { Image } from 'astro:assets'
 	>
 		<Hero />
 		<Main>
-				<Topic
-				title="INTRODUCTORY TEXT"
-				description=" Hi, I'm Val, and I'm 17 years old.
-				 I'm very interested in programming, with Astro being my favorite language, and I enjoy working with it alongside React. I also love music, especially electronic and metal, with Aphex Twin and Avenged Sevenfold as my main favorites.
-				 Finally, I hope you enjoy this site, which I created with love, and check out my GitHub."
-				/>
-				<div>
-					<Image id="itme" class="size-34" src={Itsme} alt="It's me" />
-					<h1 class="text-center text-2xl font-semibold">It's me</h1>
-				</div>
-				<Stamps 
-				url={[
-					"https://adriansblinkiecollection.neocities.org/stamps/d18.gif",
-					"https://media1.tenor.com/m/DOrW_R3TANcAAAAC/gn-my-pookie-wookie-good-night-my-pookie-wookie.gif",
-					"https://media.tenor.com/NG4r1TLxjRkAAAAi/murder-drones-n-plushie.gif",
-					"https://media1.tenor.com/m/pM0ki7A-LhcAAAAC/n-sd-n.gif",
-				]}			
-				/>
-				<Topic 
-				title="SITE BUTTON"
-				description="comming soon..."
-				/>
+			<Topic
+			title="INTRODUCTORY TEXT"
+			description=" Hi, I'm Val, and I'm 17 years old.
+				I'm very interested in programming, with Astro being my favorite language, and I enjoy working with it alongside React. I also love music, especially electronic and metal, with Aphex Twin and Avenged Sevenfold as my main favorites.
+				Finally, I hope you enjoy this site, which I created with love, and check out my GitHub."
+			/>
+			<div>
+				<Image id="itme" class="size-34" src={Itsme} alt="It's me" />
+				<h1 class="text-center text-2xl font-semibold">It's me</h1>
+			</div>
+			<Stamps 
+			url={[
+				"https://adriansblinkiecollection.neocities.org/stamps/d18.gif",
+				"https://media1.tenor.com/m/DOrW_R3TANcAAAAC/gn-my-pookie-wookie-good-night-my-pookie-wookie.gif",
+				"https://media.tenor.com/NG4r1TLxjRkAAAAi/murder-drones-n-plushie.gif",
+				"https://media1.tenor.com/m/pM0ki7A-LhcAAAAC/n-sd-n.gif",
+			]}			
+			/>
+			<Music 
+			img="1.png"
+			mp3="1.mp3"
+			almusic="Music :3"
+			/>	
+			<Topic 
+			title="SITE BUTTON"
+			description="comming soon..."
+			/>
 		</Main>
 	</section>
-	<footer id="Extra" class="my-5 flex justify-center">
+	<footer id="Extra" class="py-5 flex justify-center">
 		<a class="font-bold text-3xl button rounded px-3.5 py-2.5 hover:scale-110 flex items-center gap-4" href="/extras">
 			Extra Content! <ExtraIcon class="size-8"/>
 		</a>		

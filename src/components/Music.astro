@@ -1,0 +1,9 @@
+---
+const { img, mp3, altmusic } = Astro.props;
+---
+<div class="flex flex-col items-center">
+    <img id="music" class="max-h-40 max-w-55 md:max-w-66 lg:max-w-full w-full" src=`src/assets/music/portrait/${img}` alt={altmusic}>
+    <audio controls class="max-w-55 md:max-w-66 lg:max-w-full">
+        <source src=`src/assets/${mp3}` type="audio/mpeg" />
+    </audio>
+</div>
