@@ -1,31 +1,47 @@
 ---
-import Layout from '@layout/layout.astro'
+import Layout from '@layout/layout.astro';
 
-import Hero from '@components/index/hero.astro'
-import Main from '@components/index/main.astro'
-import Topic from '@components/index/topic.astro'
-import Stamps from '@components/index/stamps.astro'
+import Main from '@components/index/main.astro';
+import Stamps from '@components/index/stamps.astro';
 
 import ExtraIcon from "@assets/svg/extras.svg";
 import Itsme from "@assets/img/It's me.jpg";
 import { Image } from 'astro:assets'
 
 import Music from '@components/Music.astro';
+
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+
+console.log("Fechas crudas:", posts.map(p => ({ title: p.data.title, date: p.data.date })));
+
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = new Date(a.data.date).getTime();
+  const dateB = new Date(b.data.date).getTime();
+  return dateB - dateA; 
+});
+
+const latestPost = sortedPosts[0];
 ---
 
 <Layout title="Personal Webpage">
 	<section
 	 class="grid grid-cols-1 px-[5%] py-6 gap-6"
 	>
-		<Hero />
 		<Main>
-			<Topic
-			title="INTRODUCTORY TEXT"
-			description=" Hi, I'm Val, and I'm 17 years old.
-				I'm very interested in programming, with Astro being my favorite language, and I enjoy working with it alongside React. I also love music, especially electronic and metal, with Aphex Twin and Avenged Sevenfold as my main favorites.
-				Finally, I hope you enjoy this site, which I created with love, and check out my GitHub."
-			/>
-			<div>
+			<article>
+				<h1 class="sm:py-3 text-left text-3xl md:text-4xl font-bold">welcome!</h1>
+				<span class="flex flex-col gap-2 pl-4 text-pretty text-lg">
+					<p>
+						Hello! I'm VAL, and this is <span class="text-lg sm:text-xl font-bold underline">RP0039</span> my personal corner of the web!</p>
+	
+						<p>	I'm very interested in programming, with Astro being my favorite language, and I enjoy working with it alongside React. I also love music, especially electronic and metal, with Aphex Twin and Avenged Sevenfold as my main favorites.</p>
+						
+						<p> Finally, I hope you enjoy this site, which I created with love, and check out my GitHub.</p>
+				</span>
+			</article>
+			<div class="lg:justify-self-end md:mr-2 lg:mr-4">
 				<Image id="itme" class="size-34" src={Itsme} alt="It's me" />
 				<h1 class="text-center text-2xl font-semibold">It's me</h1>
 			</div>
@@ -34,18 +50,34 @@ import Music from '@components/Music.astro';
 				"https://adriansblinkiecollection.neocities.org/stamps/d18.gif",
 				"https://media1.tenor.com/m/DOrW_R3TANcAAAAC/gn-my-pookie-wookie-good-night-my-pookie-wookie.gif",
 				"https://media.tenor.com/NG4r1TLxjRkAAAAi/murder-drones-n-plushie.gif",
-				"https://media1.tenor.com/m/pM0ki7A-LhcAAAAC/n-sd-n.gif",
+				"https://media1.tenor.com/m/pM0ki7A-LhcAAAAC/n-sd-n.gif", "https://adriansblinkiecollection.neocities.org/stamps/i7.png", "https://adriansblinkiecollection.neocities.org/stamps/d43.gif", "https://adriansblinkiecollection.neocities.org/stamps/e93.gif", "https://adriansblinkiecollection.neocities.org/stamps/i30.gif", "https://files.catbox.moe/wlcc1t.gif", "https://files.catbox.moe/j5695m.gif"
 			]}			
 			/>
-			<Music 
-			img="1.png"
-			mp3="1.mp3"
-			almusic="Music :3"
-			/>	
-			<Topic 
-			title="SITE BUTTON"
-			description="comming soon..."
-			/>
+			<span class="col-span-full lg:px-4 gap-6 md:gap-3 grid md:grid-cols-2">
+				<Music 
+				img="unbroken.gif"
+				mp3="Allowed to be Happy.mp3"
+				almusic="Music :3"
+				/>					
+				{latestPost ? (
+				<article class="latest-post-card rounded-lg">
+				{latestPost.data.img && (
+				<img class="object-cover size-30 h-full lg:w-35" src={latestPost.data.img} alt={latestPost.data.title} />
+				)}
+				<div style="border-radius: 0 8px 8px 0;" class="w-full">
+				<span class="text-[0.875rem] text-(--text-muted)">{latestPost.data.date}</span>
+				<h2 class="mt-2 text-2xl font-semibold">
+					<a class="hover:underline" href={`/blog/${latestPost.id}`}>{latestPost.data.title}</a>
+				</h2>
+				<p>{latestPost.data.description}</p>
+
+				<a href={`/blog/${latestPost.id}`} class="inline-block mt-4 text-center text-blue-600 font-semibold">Leer artículo &rarr;</a>
+				</div>
+				</article>
+				) : (
+					<p>No hay publicaciones recientes.</p>
+				)}
+			</span>
 		</Main>
 	</section>
 	<footer id="Extra" class="py-5 flex justify-center">
@@ -56,17 +88,29 @@ import Music from '@components/Music.astro';
 </Layout>
 
 <style>
-	section {
-		background-color: var(--b-bg);
+.latest-post-card {
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	border:var(--border-card);
+	box-shadow: var(--box-shadow);
+}
+section {
+	background-color: var(--b-bg);
+}
+div {
+	background: var(--gradient);
+	background-color: var(--b-bg);
+	border: var(--border-card);
+	box-shadow: var(--box-shadow);
+	padding: 2% 2% 0;
+}
+#itme {
+	border: 0.4px solid hsla(0,0,0,0.4);
+}
+@media screen and (max-width: 768px) {
+	p {
+		font-size: 14px;
 	}
-	div {
-		background: var(--gradient);
-		background-color: var(--b-bg);
-		border: var(--border-card);
-		box-shadow: var(--box-shadow);
-		padding: 2% 2% 0;
-	}
-	#itme {
-		border: 0.4px solid hsla(0,0,0,0.4);
-	}
+}
 </style>
