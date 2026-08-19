@@ -4,10 +4,17 @@ interface Props {
 }
 
 const { url }: Props = Astro.props
+import es from "@i18n/es";
+import en from "@i18n/en";
+import type { Language } from "@type/language.type";
+
+const lang = Astro.params.lang as Language
+const translations = { es, en };
+const t = translations[lang];
 ---
 
 <section class="mx-[7%] max-lg:mx-[3%]">
-    <h1 class="w-full font-extrabold text-3xl text-center">STAMPS</h1>
+    <h1 class="w-full font-extrabold text-3xl text-center">{t.Astro.stamps}</h1>
     <article class="p-2 flex flex-wrap justify-center gap-2.5">
         {url && url.map((stamp) => (
         <img src={stamp} alt="A Really funny image" class="size-20" />

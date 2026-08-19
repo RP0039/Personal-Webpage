@@ -9,7 +9,9 @@
       "@layout/*":["./src/layout/*"],
       "@pages/*":["./src/pages/*"],
       "@assets/*":["./src/assets/*"],
-      "@styles/*":["./src/styles/*"]
+      "@styles/*":["./src/styles/*"],
+      "@i18n/*":["./src/i18n/*"],
+      "@type/*":["./src/type/*"]
     }
   }
 }

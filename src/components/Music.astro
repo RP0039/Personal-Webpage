@@ -1,9 +1,30 @@
 ---
-const { img, mp3, altmusic } = Astro.props;
+// Recibes la lista completa llamada "playlist"
+const { playlist } = Astro.props;
+
+type song = {
+    img: string;
+    mp3: string;
+    altmusic: string;
+};
 ---
-<div class="flex flex-col items-center">
-    <img id="music" class="max-h-40 max-w-75 sm:max-h-50 md:max-w-66 lg:max-w-75 w-full" src=`src/assets/music/portrait/${img}` alt={altmusic}>
-    <audio controls class="md:max-w-66 lg:max-w-full">
-        <source src=`src/assets/music/${mp3}` type="audio/mpeg" />
-    </audio>
-</div>
+
+{
+    playlist.map((song: song) => {
+        const { img, mp3, altmusic } = song;
+
+        return (
+            <div class="flex flex-col items-center">
+                <img 
+                    id="music" 
+                    class="max-h-40 max-w-75 sm:max-h-50 md:max-w-66 lg:max-w-75 w-full" 
+                    src={img} 
+                    alt={altmusic} 
+                />
+                <audio controls class="md:max-w-66 lg:max-w-full">
+                    <source src={mp3} type="audio/mpeg" />
+                </audio>
+            </div>
+        );
+    })
+}

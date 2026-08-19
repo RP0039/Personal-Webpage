@@ -1,0 +1,8 @@
+@font-face {
+  font-family: Jacquard;
+  src: url("src/assets/font/Jacquard12-Regular.ttf");
+}
+
+.Doto {
+  font-family: Jacquard;
+}

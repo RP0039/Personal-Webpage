@@ -60,34 +60,6 @@ header a {
     box-shadow: var(--box-shadow); 
 }
 
-/* Variables */
-:root {
-    --text: hsl(0, 0%, 5%);
-    --text-muted: hsl(0, 0%, 30%);
-    --l-bg: hsl(0, 0%, 100%);
-    --b-bg: hsl(0, 0%, 95%);
-    --d-bg: hsl(0, 0%, 90%);
-
-    --highlight: hsl(0, 0%, 100%);
-    --gradient: linear-gradient(0deg, var(--b-bg) 95%, var(--l-bg));
-    --transition: .3s ease;
-    
-    --border: hsl(0, 0%, 30%);
-    --border-card: solid 1px var(--b-bg);
-    --box-shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
-}
-/*@media (prefers-color-scheme: dark) {
-    :root {
-        --color: #ffffff;
-        --background-color: #000000;
-        --border-color: #ffffff;
-
-        --header-color: #2c2c2c;
-        --button-color: #363636;
-        --m-boxShadow: 3px 4px blue;    
-        --l-boxShadow: #ffffff 0px 1.5px 2px;
-    }
-}
 /* Media Query */
 @media screen and (min-width: 1000px) {
     body {

@@ -1,13 +1,13 @@
 ---
-interface Props { title: String; }
-const { title } = Astro.props
+const { title, lang } = Astro.props
 
 import Header from "@components/header.astro";
-import '@styles/global.css'
+import '@styles/global.css';
+import '@styles/colors.css';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +16,8 @@ import '@styles/global.css'
 </head>
 <body class="gap-4">
 	
-	<Header />
+	<Header Lang={lang} />
 	<slot />
 
-	<script src="/src/script/togglemode.js"></script>
 </body>
 </html>

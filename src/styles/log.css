@@ -1,5 +1,6 @@
 .log-container {
-    margin-top: 1.5rem  
+    margin-top: 1.5rem;
+    background-color: var(--b-bg);
 }
 
 .log-Card-container {
@@ -17,6 +18,7 @@
     background: var(--gradient);
     border: 1px solid var(--border);
     box-shadow: var(--box-shadow);
+    background-color: var(--l-bg);
 }
 
 .buttons a {

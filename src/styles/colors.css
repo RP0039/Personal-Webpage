@@ -1,0 +1,165 @@
+/* Variables */
+:root /*DEFAULT MODE*/ {
+    --text: hsl(0, 0%, 5%);
+    --text-muted: hsl(0, 0%, 30%);
+    --l-bg: hsl(0, 0%, 100%);    
+    --b-bg: hsl(0, 0%, 95%);
+    --d-bg: hsl(0, 0%, 90%);
+
+    --color-alt: hsl(197, 78%, 46%);
+
+    --highlight: hsl(0, 0%, 100%);
+    --gradient: linear-gradient(0deg, var(--b-bg) 95%, var(--l-bg));
+    --transition: .3s ease;
+    
+    --border: hsl(0, 0%, 30%);
+    --border-card: solid 1px var(--b-bg);
+    --box-shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+}  
+:root[data-pattern-scheme= "sunset"] {
+    --text: hsl(270, 60%, 20%);
+    --text-muted: hsl(270, 40%, 40%);
+    --l-bg: hsl(51, 65%, 92%);
+    --b-bg: hsl(45, 63%, 82%);
+    --d-bg: hsl(40, 54%, 67%);
+    --color-alt: hsl(25, 90%, 60%);
+
+    --highlight: hsl(45, 100%, 95%);
+    --gradient: linear-gradient(0deg, hsla(270, 50%, 30%, 0.05) 95%, hsla(270, 41%, 25%, 0.089));
+    --transition: .3s ease;
+    
+    --border: hsl(270, 40%, 40%);
+    --border-card: solid 1px var(--b-bg);
+    --box-shadow: 0px 2px 2px hsla(270, 60%, 20%, 0.07), 0px 4px 4px hsla(270, 60%, 20%, 0.15);
+}
+:root[data-pattern-scheme= "blue"] {
+    --text: hsl(224, 77%, 40%);
+    --text-muted: hsl(203, 70%, 35%);
+    --l-bg: hsl(203, 100%, 97%);
+    --b-bg: hsl(203, 80%, 90%);
+    --d-bg: hsl(203, 70%, 80%);
+    --color-alt: hsl(139, 48%, 28%);
+
+    --highlight: hsl(203, 100%, 97%);
+    --gradient: linear-gradient(0deg, var(--b-bg) 95%, var(--l-bg));
+    --transition: .3s ease;
+    
+    --border: hsl(203, 70%, 35%);
+    --border-card: solid 1px var(--b-bg);
+    --box-shadow: 0px 2px 2px hsla(203, 100%, 20%, 0.07), 0px 4px 4px hsla(203, 100%, 20%, 0.15);
+}
+:root[data-pattern-scheme= "green"] {
+    --text: hsl(152, 82%, 17%);
+    --text-muted: hsl(137, 44%, 32%);
+    --l-bg: hsl(134, 52%, 92%);
+    --b-bg: hsl(137, 43%, 79%);
+    --d-bg: hsl(135, 27%, 62%);
+    --color-alt: hsl(165, 72%, 35%);
+
+    --highlight: hsl(137, 60%, 96%);
+    --gradient: linear-gradient(0deg, var(--b-bg) 95%, var(--l-bg));
+    --transition: .3s ease;
+    
+    --border: hsl(137, 40%, 32%);
+    --border-card: solid 1px var(--b-bg);
+    --box-shadow: 0px 2px 2px hsla(137, 47%, 18%, 0.07), 0px 4px 4px hsla(138, 47%, 18%, 0.103);
+}
+:root[data-pattern-scheme= "purple"] {
+    --text: hsl(275, 50%, 20%);
+    --text-muted: hsl(275, 40%, 38%);
+    --l-bg: hsl(270, 40%, 97%);
+    --b-bg: hsl(270, 30%, 91%);
+    --d-bg: hsl(270, 25%, 82%);
+    --color-alt: hsl(290, 70%, 55%);
+
+    --highlight: hsl(270, 40%, 97%);
+    --gradient: linear-gradient(0deg, var(--b-bg) 95%, var(--l-bg));
+    --transition: .3s ease;
+    
+    --border: hsl(275, 40%, 38%);
+    --border-card: solid 1px var(--b-bg);
+    --box-shadow: 0px 2px 2px hsla(275, 50%, 20%, 0.07), 0px 4px 4px hsla(275, 50%, 20%, 0.15);
+}
+/*
+@media (prefers-color-scheme: dark) {
+    :root  {
+        --text: hsl(0, 0%, 95%);
+        --text-muted: hsl(0, 0%, 70%);
+        --l-bg: hsl(0, 0%, 12%);
+        --b-bg: hsl(0, 0%, 7%);
+        --d-bg: hsl(0, 0%, 0%);
+        --color-alt: hsl(35, 77%, 49%);
+
+        --highlight: hsla(0, 0%, 100%, 0.109);
+        --gradient: linear-gradient(0deg, var(--b-bg) 95%, var(--l-bg));
+        --transition: .3s ease;
+        
+        --border: hsl(0, 0%, 70%);
+        --border-card: solid 1px var(--b-bg);
+        --box-shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+    }  
+    :root[data-pattern-scheme= "sunset"] {
+        --text: hsl(270, 60%, 20%);
+        --text-muted: hsl(270, 40%, 40%);
+        --l-bg: hsl(51, 65%, 92%);
+        --b-bg: hsl(45, 63%, 82%);
+        --d-bg: hsl(40, 54%, 67%);
+        --color-alt: hsl(25, 90%, 60%);
+
+        --highlight: hsl(45, 100%, 95%);
+        --gradient: linear-gradient(0deg, hsla(270, 50%, 30%, 0.05) 95%, hsla(270, 41%, 25%, 0.089));
+        --transition: .3s ease;
+        
+        --border: hsl(270, 40%, 40%);
+        --border-card: solid 1px var(--b-bg);
+        --box-shadow: 0px 2px 2px hsla(270, 60%, 20%, 0.07), 0px 4px 4px hsla(270, 60%, 20%, 0.15);
+    }
+    :root[data-pattern-scheme= "blue"] {
+        --text: hsl(224, 77%, 40%);
+        --text-muted: hsl(203, 70%, 35%);
+        --l-bg: hsl(203, 100%, 97%);
+        --b-bg: hsl(203, 80%, 90%);
+        --d-bg: hsl(203, 70%, 80%);
+        --color-alt: hsl(139, 48%, 28%);
+
+        --highlight: hsl(203, 100%, 97%);
+        --gradient: linear-gradient(0deg, var(--b-bg) 95%, var(--l-bg));
+        --transition: .3s ease;
+        
+        --border: hsl(203, 70%, 35%);
+        --border-card: solid 1px var(--b-bg);
+        --box-shadow: 0px 2px 2px hsla(203, 100%, 20%, 0.07), 0px 4px 4px hsla(203, 100%, 20%, 0.15);
+    }
+    :root[data-pattern-scheme= "green"] {
+        --text: hsl(152, 82%, 17%);
+        --text-muted: hsl(137, 44%, 32%);
+        --l-bg: hsl(134, 52%, 92%);
+        --b-bg: hsl(137, 43%, 79%);
+        --d-bg: hsl(135, 27%, 62%);
+        --color-alt: hsl(165, 72%, 35%);
+
+        --highlight: hsl(137, 60%, 96%);
+        --gradient: linear-gradient(0deg, var(--b-bg) 95%, var(--l-bg));
+        --transition: .3s ease;
+        
+        --border: hsl(137, 40%, 32%);
+        --border-card: solid 1px var(--b-bg);
+        --box-shadow: 0px 2px 2px hsla(137, 47%, 18%, 0.07), 0px 4px 4px hsla(138, 47%, 18%, 0.103);
+    }
+    :root[data-pattern-scheme= "purple"] {
+        --text: hsl(275, 50%, 20%);
+        --text-muted: hsl(275, 40%, 38%);
+        --l-bg: hsl(270, 40%, 97%);
+        --b-bg: hsl(270, 30%, 91%);
+        --d-bg: hsl(270, 25%, 82%);
+        --color-alt: hsl(290, 70%, 55%);
+
+        --highlight: hsl(270, 40%, 97%);
+        --gradient: linear-gradient(0deg, var(--b-bg) 95%, var(--l-bg));
+        --transition: .3s ease;
+        
+        --border: hsl(275, 40%, 38%);
+        --border-card: solid 1px var(--b-bg);
+        --box-shadow: 0px 2px 2px hsla(275, 50%, 20%, 0.07), 0px 4px 4px hsla(275, 50%, 20%, 0.15);
+    }
+}

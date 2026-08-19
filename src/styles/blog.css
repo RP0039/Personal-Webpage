@@ -1,5 +1,6 @@
 .blog-container {
-    margin-top: 1.5rem  
+    margin-top: 1.5rem;  
+    background-color: var(--b-bg);
 }
 
 .Blog-Card-container {
@@ -15,9 +16,9 @@
     box-sizing: none;
     max-width: 700px;
     padding: 16px 12px;
-    background: var(--gradient);
     border: 1px solid var(--border);
     box-shadow: var(--box-shadow);
+    background-color: var(--l-bg);
 }
 .Blog-card {
     width: max(250px, 100%);
