@@ -1,7 +1,3 @@
----
-title: My Webpage's Updates
----
-
 ## **18 July, 2026**
  -- Log page released
  -- Blog content added

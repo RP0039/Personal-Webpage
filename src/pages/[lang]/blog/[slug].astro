@@ -1,0 +1,82 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import ReplyAll from "@assets/svg/reply-all.svg";
+import Reply from "@assets/svg/reply.svg";
+import Layout from '@layout/layout.astro';
+import '@styles/blog.css'
+
+type BlogPost = CollectionEntry<'blog'>;
+
+const imageModules = import.meta.glob<{ default: { src: string } }>(
+    '/src/assets/img/blog/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true }
+);
+
+export async function getStaticPaths() {
+  const blog = await getCollection("blog");
+  const languages = ["es", "en"] as const;
+
+  return blog.flatMap((post: BlogPost) => {
+    return languages.flatMap((lang) => {
+      if (!post.id.startsWith(`${lang}/`)) {
+        return [];
+      }
+
+      const slug = post.id.replace(`${lang}/`, "").replace(/\.md$/, "");
+
+      return [{
+        params: {
+          lang,
+          slug,
+        },
+        props: { post },
+      }];
+    });
+  });
+}
+
+const { post } = Astro.props;
+const { data } = post;
+const { title, previous, img, date} = data;
+const { Content } = await render(post);
+const normalizedImgPath = img.startsWith('/') ? img : `/${img}`;
+const imageSrc = imageModules[normalizedImgPath]?.default?.src;
+// idioma
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import es from "@i18n/es";
+import en from "@i18n/en";
+import type { Language } from "@type/language.type";
+
+const lang = Astro.params.lang as Language
+const translations = { es, en };
+const t = translations[lang];
+---
+<Layout title={`RP0039 |Blog - ${title}`} lang={lang}>
+
+      <main class="mt-4 px-[3%] grid justify-center">
+         <article class="post-container">
+            <div style="line-height: 2em;">
+              <h2 class="text-[33px] max-lg:text-[27px] max-sm:text-2xl font-extrabold px-6">{title}</h2>
+              <p class="px-3 mb-4 font-medium max-md:text-[13px]">{date}</p>
+            </div>
+
+            <div class="px-3 mb-3 text-pretty text-lg max-lg:text-[15px] max-sm:text-[12px] whitespace-pre-line">
+                <Content />
+                {imageSrc && <img class="max-w-130 w-full mt-6 mx-auto" src={imageSrc} alt={title} />}
+            </div>
+         </article>
+      </main>
+
+      <footer id="Post" class="buttons p-4">
+        <a href={getAbsoluteLocaleUrl(lang, `/blog${previous}`)} class="hover:scale-105"><Reply class="size-8" /> {t.blog.prev} </a>
+        <a href={getAbsoluteLocaleUrl(lang, '/blog')} class="hover:scale-105"><ReplyAll class="size-8" /> {t.blog.home} </a>
+      </footer>
+
+</Layout>
+
+<style>
+    h2 {
+        color: var(--color-alt);
+    }
+</style>

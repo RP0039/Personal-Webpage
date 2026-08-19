@@ -1,0 +1,82 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import ToTop from "@components/toTop.astro";
+import Layout from "@layout/layout.astro";
+import '@styles/blog.css';
+
+type BlogPost = CollectionEntry<'blog'>;
+
+const imageModules = import.meta.glob<{ default: { src: string } }>(
+    '/src/assets/img/blog/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true }
+);
+
+const blogData = await getCollection('blog');
+const normalizeSlug = (postId: string) => postId.replace(/^(es|en)\//, "").replace(/\.md$/, "");
+
+// idioma
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import es from "@i18n/es";
+import en from "@i18n/en";
+import type { Language } from "@type/language.type";
+
+export async function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const lang = Astro.params.lang as Language;
+const translations = { es, en };
+const t = translations[lang];
+const localizedPosts = blogData.filter((post: BlogPost) => post.id.startsWith(`${lang}/`));
+---
+
+<Layout title={t.blog.headtitle} lang={lang}>
+    <main class="py-6 blog-container"> 
+        <div class="m-[0 auto] mb-4 text-center">
+                <h1 id="Blog-title" style="line-height:2.5rem;" class="font-bold">{t.blog.title}</h1>
+                <p>{t.blog.p}</p>
+        </div>
+
+        <section aria-label="Links to all of my entries." class="Blog-Card-container">
+            {
+                localizedPosts.map((post: BlogPost) => {
+                    const { date, description, title, img } = post.data;
+                    const slug = normalizeSlug(post.id);
+    
+                    const normalizedImgPath = img.startsWith('/') ? img : `/${img}`;
+                    const imageSrc = imageModules[normalizedImgPath]?.default?.src;
+    
+                    return (
+                        <article class="Blog-card grid">
+                            <a href={getAbsoluteLocaleUrl(lang, `/blog/${slug}`)}>
+                                {imageSrc && <img class="size-22 rounded border-[0.7px] border-(--color-alt)" src={imageSrc} alt={title} />}
+                            </a>
+                            <div>
+                                <a class="text-center" href={getAbsoluteLocaleUrl(lang, `/blog/${slug}`)}>
+                                    <h2 class="text-2xl font-bold">{title}</h2><h4 class="ml-2 text-lg font-medium">{date}</h4>
+                                    <p class="text-[15px]">{description}</p>
+                                </a>
+                            </div>
+                        </article>
+                    );
+                })
+            }
+        </section>
+    </main>
+    <ToTop />
+</Layout>
+
+<style>
+    article {
+        grid-template-columns: auto 1fr;
+        gap: 0.7em;
+        align-items: center;
+    }
+</style>
+
+<style>
+    h2 {
+        color: var(--color-alt);
+    }
+</style>

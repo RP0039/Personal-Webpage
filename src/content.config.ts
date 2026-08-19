@@ -26,9 +26,6 @@ export const collections = {
         }),
     }),
     updates: defineCollection({
-        loader: glob({ pattern: "**/*.md", base: "src/content/updata" }),
-        schema: z.object({
-            title: z.string(),
-        }),
+        loader: glob({ pattern: "**/*.md", base: "src/content/updata" })
     }),
 };

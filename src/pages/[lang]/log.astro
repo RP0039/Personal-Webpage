@@ -1,0 +1,91 @@
+---
+import ToTop from "@components/toTop.astro";
+import Layout from "@layout/layout.astro"
+import '@styles/log.css'
+
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import es from "@i18n/es";
+import en from "@i18n/en";
+import type { Language } from "@type/language.type";
+
+type logPost = CollectionEntry<'log'>;
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const imageModules = import.meta.glob<{ default: { src: string } }>(
+    '/src/assets/img/log/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true }
+);
+
+const logData = await getCollection('log');
+const lang = Astro.params.lang as Language;
+const translations = { es, en };
+const t = translations[lang];
+const normalizeSlug = (postId: string) => postId.split('/').pop()?.replace(/\.md$/, "") ?? postId.replace(/\.md$/, "");
+const localizedPosts = logData.filter((post: logPost) => post.id.startsWith(`${lang}/`));
+---
+<Layout title={t.log.title} lang={lang}>
+    <main class="pb-6 pt-2 log-container"> 
+        <div class="px-[2%] mb-4">
+                <h1 id="Blog-title" style="line-height:3.5rem;" class="font-bold">{t.log.title}</h1>
+                <p>{t.log.subtitle}</p>
+        </div>
+
+        <section aria-label="Links to all of my entries." class="log-Card-container">
+            {
+                localizedPosts.map((post: logPost) => {
+                    const { author, rating, description, title, img, book, genre } = post.data;
+                    const slug = normalizeSlug(post.id);
+    
+                    const normalizedImgPath = img.startsWith('/') ? img : `/${img}`;
+                    const imageSrc = imageModules[normalizedImgPath]?.default?.src;
+    
+                    return (
+                        <article class="log-card grid">
+                            <a href={getAbsoluteLocaleUrl(lang, `/log/${slug}`)}>
+                                {imageSrc && <img class="Portrait" src={imageSrc} alt={title} />}
+                                <p class="pt-3 text-center font-bold"><span class="underline">{t.log.stars}</span>: {rating} / 5⭐️</p>
+                            </a>
+                            <div class="self-start">
+                                <a href={getAbsoluteLocaleUrl(lang, `/log/${slug}`)}>
+                                    <h1 class="text-5xl max-md:text-3xl font-bold">{title}</h1>
+                                    <div class="Data">
+                                        <p class="mt-2 mb-0.5"><span class="underline font-semibold">{t.log.d1}</span>: {author}</p>
+                                        <p class="mb-0.5"><span class="underline font-semibold">{t.log.d2}</span>: {book}</p>
+                                        <div class="tags mb-3">
+                                        {genre}
+                                        </div>
+                                    </div>
+                                    <p class="px-2 text-[16px] max-md:text-[12px] max-sm:text-justify text-pretty">{description}</p>
+                                </a>
+                            </div>
+                        </article>
+                    );
+                })
+            }
+        </section>
+    </main>
+    
+    <ToTop />
+</Layout>
+
+<style>
+    article {
+        grid-template-columns: auto 1fr;
+        gap: 1.5rem;
+        align-items: center;
+        justify-items: center;
+    }
+    @media screen and (max-width: 568px) {
+        article {
+            grid-template-columns: 1fr;
+            gap:1rem;
+        }
+    }
+</style>

@@ -1,0 +1,49 @@
+---
+import Layout from "@layout/layout.astro";
+import Totop from "@components/toTop.astro";
+// idioma
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import es from "@i18n/es";
+import en from "@i18n/en";
+import type { Language } from "@type/language.type";
+
+export async function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const lang = Astro.params.lang as Language;
+const translations = { es, en };
+const t = translations[lang];
+---
+
+<Layout title={t.index.extra} lang={lang}>
+    <main class="grid sm:grid-cols-2 gap-6 justify-items-center py-6 bg-(--b-bg)">
+        <article class="grid gap-2">
+            <h2 class="text-center underline text-2xl font-bold">{t.extras.ads}</h2>
+            <iframe class="border-(--color-alt) border-2" width="250" height="250" src="https://nvlk.dimden.dev/" name="neolink"></iframe>
+        </article>
+
+        <article class="border-2 border-(--color-alt)">
+            <a id="Guestbook" href="https://rp0039.atabook.org">
+                <h1 class="px-2 py-3 mb-1 border-b-3 border-(--color-alt) text-center text-xl md:text-2xl font-bold">{t.extras.gt}</h1>
+                <p class="text-center text-lg font-bold underline decoration-(--color-alt)">{t.extras.gd}</p>
+            </a>
+        </article>
+
+        <a class="col-span-full text-2xl font-bold underline" href={getAbsoluteLocaleUrl(lang, '/extras/updates')}>{t.extras.updates}</a>
+    </main>
+
+    <Totop />
+</Layout>
+
+<style>
+    h2 {
+        color: var(--color-alt);
+    }
+    a {
+        transition: var(--transition);
+    }
+    a:hover, a p:hover {
+        scale: 103%;
+    }
+</style>

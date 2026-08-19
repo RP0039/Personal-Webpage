@@ -1,0 +1,100 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import type { Language } from "@type/language.type";
+
+type logPost = CollectionEntry<'log'>;
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+    const log = await getCollection('log');
+    const languages = ["es", "en"] as const;
+
+    return log.flatMap((post: logPost) => {
+        const slug = post.id.split('/').pop()?.replace(/\.md$/, "") ?? post.id.replace(/\.md$/, "");
+
+        return languages.flatMap((lang) => {
+            if (!post.id.startsWith(`${lang}/`)) {
+                return [];
+            }
+
+            return [{
+                params: { lang, slug },
+                props: { post },
+            }];
+        });
+    });
+}
+
+const { post } = Astro.props;
+const lang = Astro.params.lang as Language;
+const { data } = post;
+const { book, description, title, img, rating, author, genre } = data;
+const { Content } = await render(post);
+import Layout from '@layout/layout.astro'
+import ReplyAll from "@assets/svg/reply-all.svg";
+import '@styles/log.css'
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+
+const imageModules = import.meta.glob<{ default: { src: string } }>(
+    '/src/assets/img/log/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true }
+);
+const normalizedImgPath = img.startsWith('/') ? img : `/${img}`;
+const imageSrc = imageModules[normalizedImgPath]?.default?.src;
+
+import es from "@i18n/es";
+import en from "@i18n/en";
+const translations = { es, en };
+const t = translations[lang];
+---
+
+<Layout title={`RP0039 | ${title}`} lang={lang}>
+
+  <section class="post-container mt-4 px-[3%] mx-auto">
+    <aside>
+      {imageSrc && <img class="Portrait" src={imageSrc} alt={title} />}
+      <p class="mt-4 text-center"><span class="underline font-bold">{t.log.stars}</span>: {rating} / 5⭐️</p>
+    </aside>
+    
+    <article>
+      <h2 class="text-4xl max-lg:text-3xl max-sm:text-2xl max-sm:text-center font-bold">{title}</h2>
+
+      <div class="Data">
+        <p class="mt-2 mb-0.5"><span class="underline font-semibold">{t.log.d1}</span>: {author}</p>
+        <p class="mb-0.5"><span class="underline font-semibold">{t.log.d2}</span>: {book}</p>
+        <div class="tags mb-3">
+          {genre}
+        </div>
+      </div>
+
+      <p class="px-2 text-[16px] max-md:text-[12px] max-sm:text-justify text-pretty">{description}</p>
+    </article>
+    
+    <main class="border-t px-3 py-3 text-pretty text-lg max-lg:text-[15px] max-sm:text-[12px] whitespace-pre-line">
+      <h2 class="text-center font-semibold text-xl">{t.log.d3}</h2>
+      <Content />
+    </main>
+  </section>
+
+  <footer id="Post" class="buttons p-4">
+    <a href={getAbsoluteLocaleUrl(lang, '/log')} class="hover:scale-105">
+      <ReplyAll class="size-8" /> {t.blog.home}
+    </a>
+  </footer>
+
+</Layout>
+
+<style>
+  aside {
+    grid-area: "aside";
+  }
+  main {
+    grid-area: "main";
+    grid-column: 1 / -1;
+  }
+  article {
+    grid-area : "article";
+  }
+</style>

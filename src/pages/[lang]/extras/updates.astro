@@ -1,0 +1,39 @@
+---
+import Layout from '@layout/layout.astro';
+import Totop from '@components/toTop.astro';
+import '@styles/updates.css';
+
+import { getCollection, render } from 'astro:content';
+import type { Language } from '@type/language.type';
+
+export async function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const lang = Astro.params.lang as Language;
+
+const updates = await getCollection('updates');
+
+const entry = updates[0];
+
+if (!entry) {
+    return Astro.redirect("/404");
+}
+
+const { Content } = await render(entry);
+import es from "@i18n/es";
+import en from "@i18n/en";
+const translations = { es, en };
+const t = translations[lang];
+---
+<Layout title={t.extras.updates} lang={lang}>
+    <article>
+        <h1 class="text-4xl text-center font-semibold mt-6"> {t.extras.upd.title} </h1>
+        <p class="text-center text-lg max-md:text-[15px] mb-6">{t.extras.upd.p1} <a class="underline decoration-blue-500 font-bold" href="https://github.com/RP0039/Personal-Webpage/activity">{t.extras.upd.p2}</a></p>
+        
+        <Content />
+    </article>
+    <Totop />
+</Layout>
+
+

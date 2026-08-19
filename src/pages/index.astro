@@ -1,116 +1,115 @@
 ---
-import Layout from '@layout/layout.astro';
-
-import Main from '@components/index/main.astro';
-import Stamps from '@components/index/stamps.astro';
-
-import ExtraIcon from "@assets/svg/extras.svg";
-import Itsme from "@assets/img/It's me.jpg";
+import '@styles/global.css';
+import '@styles/colors.css';
+import '@styles/fonts.css';
 import { Image } from 'astro:assets'
-
-import Music from '@components/Music.astro';
-
-import { getCollection } from 'astro:content';
-
-const posts = await getCollection('blog');
-
-console.log("Fechas crudas:", posts.map(p => ({ title: p.data.title, date: p.data.date })));
-
-const sortedPosts = posts.sort((a, b) => {
-  const dateA = new Date(a.data.date).getTime();
-  const dateB = new Date(b.data.date).getTime();
-  return dateB - dateA; 
-});
-
-const latestPost = sortedPosts[0];
+import RG from "@assets/img/RG.png";
 ---
 
-<Layout title="Personal Webpage">
-	<section
-	 class="grid grid-cols-1 px-[5%] py-6 gap-6"
-	>
-		<Main>
-			<article>
-				<h1 class="sm:py-3 text-left text-3xl md:text-4xl font-bold">welcome!</h1>
-				<span class="flex flex-col gap-2 pl-4 text-pretty text-lg">
-					<p>
-						Hello! I'm VAL, and this is <span class="text-lg sm:text-xl font-bold underline">RP0039</span> my personal corner of the web!</p>
-	
-						<p>	I'm very interested in programming, with Astro being my favorite language, and I enjoy working with it alongside React. I also love music, especially electronic and metal, with Aphex Twin and Avenged Sevenfold as my main favorites.</p>
-						
-						<p> Finally, I hope you enjoy this site, which I created with love, and check out my GitHub.</p>
-				</span>
-			</article>
-			<div class="lg:justify-self-end md:mr-2 lg:mr-4">
-				<Image id="itme" class="size-34" src={Itsme} alt="It's me" />
-				<h1 class="text-center text-2xl font-semibold">It's me</h1>
-			</div>
-			<Stamps 
-			url={[
-				"https://adriansblinkiecollection.neocities.org/stamps/d18.gif",
-				"https://media1.tenor.com/m/DOrW_R3TANcAAAAC/gn-my-pookie-wookie-good-night-my-pookie-wookie.gif",
-				"https://media.tenor.com/NG4r1TLxjRkAAAAi/murder-drones-n-plushie.gif",
-				"https://media1.tenor.com/m/pM0ki7A-LhcAAAAC/n-sd-n.gif", "https://adriansblinkiecollection.neocities.org/stamps/i7.png", "https://adriansblinkiecollection.neocities.org/stamps/d43.gif", "https://adriansblinkiecollection.neocities.org/stamps/e93.gif", "https://adriansblinkiecollection.neocities.org/stamps/i30.gif", "https://files.catbox.moe/wlcc1t.gif", "https://files.catbox.moe/j5695m.gif"
-			]}			
-			/>
-			<span class="col-span-full lg:px-4 gap-6 md:gap-3 grid md:grid-cols-2">
-				<Music 
-				img="unbroken.gif"
-				mp3="Allowed to be Happy.mp3"
-				almusic="Music :3"
-				/>					
-				{latestPost ? (
-				<article class="latest-post-card rounded-lg">
-				{latestPost.data.img && (
-				<img class="object-cover size-30 h-full lg:w-35" src={latestPost.data.img} alt={latestPost.data.title} />
-				)}
-				<div style="border-radius: 0 8px 8px 0;" class="w-full">
-				<span class="text-[0.875rem] text-(--text-muted)">{latestPost.data.date}</span>
-				<h2 class="mt-2 text-2xl font-semibold">
-					<a class="hover:underline" href={`/blog/${latestPost.id}`}>{latestPost.data.title}</a>
-				</h2>
-				<p>{latestPost.data.description}</p>
-
-				<a href={`/blog/${latestPost.id}`} class="inline-block mt-4 text-center text-blue-600 font-semibold">Leer artículo &rarr;</a>
-				</div>
-				</article>
-				) : (
-					<p>No hay publicaciones recientes.</p>
-				)}
-			</span>
-		</Main>
-	</section>
-	<footer id="Extra" class="py-5 flex justify-center">
-		<a class="font-bold text-3xl button rounded px-3.5 py-2.5 hover:scale-110 flex items-center gap-4" href="/extras">
-			Extra Content! <ExtraIcon class="size-8"/>
-		</a>		
-	</footer>
-</Layout>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Jacquard+12&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RP0039 | Welcome :3</title>
+</head>
+<body class="md:relative grid justify-items-center items-center">
+    <main class="relative rounded-lg max-w-[90%]">
+        <h1 class="absolute text-7xl md:text-8xl text-center Doto">.:RP0039:.</h1>
+        <h3 class="absolute text-nowrap">Layout.V1 - 2026-08-06</h3>
+        <h2 class="py-2 border bg-(--d-bg) shadow-(--box-shadow) text-center text-2xl font-bold underline px-7 mb-3">Welcome! to my dream</h2>
+        <Image id="RG" class="md:h-96 md:max-w-67" src={RG} alt="'Red Guy' from the tv show Don't Hug me I'm Scared" />
+        <p class="mb-2 text-center font-medium sm:text-xl">Elige tu idioma!</p>
+        <div class="items-center flex flex-col gap-1.5">
+            <a href="/es">
+                <button class="bt">🇦🇷 SPANISH 🇪🇸</button>
+            </a>
+            <a href="/en">
+                <button class="bt">🇬🇧 ENGLISH 🇺🇸</button>
+            </a>
+        </div>
+    </main>
+</body>
+</html>
 
 <style>
-.latest-post-card {
-	overflow: hidden;
-	display: flex;
-	justify-content: center;
-	border:var(--border-card);
-	box-shadow: var(--box-shadow);
-}
-section {
-	background-color: var(--b-bg);
-}
-div {
-	background: var(--gradient);
-	background-color: var(--b-bg);
-	border: var(--border-card);
-	box-shadow: var(--box-shadow);
-	padding: 2% 2% 0;
-}
-#itme {
-	border: 0.4px solid hsla(0,0,0,0.4);
-}
-@media screen and (max-width: 768px) {
-	p {
-		font-size: 14px;
-	}
+    h3 {
+        color: var(--color-alt);
+        position: absolute;
+        right: -15;
+        bottom: -35;
+        z-index: -1;
+    }   
+    #RG {
+        position: absolute;
+        left: 0;
+        top: -190;
+        z-index: -2;
+    }   
+    .bt {
+        display: block;
+        box-shadow: var(--box-shadow);
+        padding: 1rem 1.3rem;
+        background-color: var(--l-bg);
+        transition: var(--transition);
+    }
+    .bt:hover {
+        background-color: var(--color-alt);
+        color: hsl(147, 78, 45);
+    }
+    main {
+        padding: 1rem 1.1rem;
+        background-color: var(--b-bg);
+        border: var(--border-card);
+        box-shadow: var(--box-shadow);
+    }
+    body {
+        overflow-y: hidden;
+        grid-template-rows: 1fr;
+        background-color: var(--d-bg);
+        height:100%;
+        max-height: 100vh;
+        max-height: 100dvh;
+        padding: 0;
+        margin: 0;
+    }
+    @media screen and (max-width: 768px) {
+        body {
+            margin-top: 6rem;
+        }
+        h1 {
+            position: absolute;
+            left: 0;
+            top: -95%;
+            z-index: 9;
+        }
+        h3 {
+            position: absolute;
+            right: 0;
+            bottom: -35;
+        }           
+        .H1 {
+            display: none;
+        }        
+    }
+    @media screen and (min-width: 400px) {
+        h1 {
+            top: -110%;
+        }
+    }
+@media screen and (min-width: 769px) {
+    #RG {
+    position: absolute;
+    left: -72%;
+    top: -130;
+    }  
+    h1 {
+    position: absolute;
+    left: 25;
+    top: -127;
+    }
 }
 </style>
